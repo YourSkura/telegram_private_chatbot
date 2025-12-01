@@ -63,9 +63,9 @@ v4.0 版本移除了所有不稳定的外部 API 依赖，专注于**极致的�
 2.  **管理员群组**：创建一个 Telegram 群组，并**开启话题功能 (Topics)**。
     * 将机器人拉入群组，并设为**管理员**（给予管理话题权限）。
     * 获取群组 ID（通常以 `-100` 开头）。
-     获取 SUPERGROUP_ID 小技巧：在 Telegram 桌面端右键群内任意消息，复制消息链接；
+     ``获取 SUPERGROUP_ID 小技巧：在 Telegram 桌面端右键群内任意消息，复制消息链接；
 链接里会有一段 -100xxxxxxxxxx 或 xxxxxxxxxx；若只看到纯数字 xxxxxxxxxx，在前面加上 -100，就是完整的 SUPERGROUP_ID（私密频道/群组同理）。
-在 Telegram 桌面端右键群内任意消息，复制消息链接；链接里会有一段 -100xxxxxxxxxx 或 xxxxxxxxxx；若只看到纯数字 xxxxxxxxxx，在前面加上 -100，就是完整的 SUPERGROUP_ID（私密频道/群组同理）。
+在 Telegram 桌面端右键群内任意消息，复制消息链接；链接里会有一段 -100xxxxxxxxxx 或 xxxxxxxxxx；若只看到纯数字 xxxxxxxxxx，在前面加上 -100，就是完整的 SUPERGROUP_ID（私密频道/群组同理）。``
 
 ### 方法一：GitHub 一键连接部署 (推荐 ★)
 
@@ -112,16 +112,11 @@ v4.0 版本移除了所有不稳定的外部 API 依赖，专注于**极致的�
 
 无论使用哪种部署方式，最后都需要手动告诉 Telegram 你的 Worker 地址。请在浏览器中**严格按顺序**访问以下 URL：
 
-1.  **删除旧配置**：
-    ```
-    [https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_TOKEN>/deleteWebhook?drop_pending_updates=true
-    ```
-
-2.  **设置新 Webhook**：
+ **设置新 Webhook**：
     ```
     [https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_TOKEN>/setWebhook?url=<YOUR_WORKER_URL>
     ```
-    *将 `<YOUR_TOKEN>` 替换为机器人 Token，`<YOUR_WORKER_URL>` 替换为 Cloudflare Worker 的完整域名 (如 `https://xxx.workers.dev`)。*
+    *将 `<YOUR_TOKEN>` 替换为机器人 Token，`<YOUR_WORKER_URL>` 替换为 Worker 的完整域名或者你绑定的自定义的域名 (如 `https://xxx.workers.dev`)。*
 
 如果返回 `{"ok":true, "result":true, "description":"Webhook was set"}`，即表示部署成功！
 
@@ -134,6 +129,20 @@ A: 请检查 Webhook 是否正确设置。必须确保 Telegram 允许发送 `ca
 
 **Q: 为什么机器人无法在群里创建话题？**
 A: 请确保：1. 群组 ID 正确（-100开头）；2. 群组已开启 Topics 功能；3. 机器人是群管理员且拥有 "Manage Topics" 权限。
+
+---
+
+## 🔒 安全说明
+
+> [!IMPORTANT]
+> 请妥善保管您的 Bot API Token 和安全令牌（Secret Token），这些信息关系到您服务的安全性。
+
+> [!WARNING]
+> 请勿随意更改已设置的 Secret Token！更改后，所有已注册的机器人将无法正常工作，因为无法匹配原来的令牌。如需更改，所有机器人都需要重新注册。
+
+- 在初始设置时选择一个安全且便于记忆的 Secret Token
+- 避免使用简单或常见的前缀名称
+- 不要将敏感信息分享给他人
 
 ---
 
