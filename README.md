@@ -96,7 +96,7 @@ v4.0 版本移除了所有不稳定的外部 API 依赖，专注于**极致的�
 如果您不想关联 GitHub，可以直接复制代码。
 
 1.  登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)。
-2.  进入 **Workers & Pages** -> **Create Application** -> **Create Worker**。
+2.  进入 **Workers & Pages** -> **Create Application** -> **Create Worker** ，选择从`hello world`开始。
 3.  命名你的 Worker，点击 **Deploy**。
 4.  点击 **Edit code**，将本项目 `worker.js` 的所有代码复制粘贴进去，覆盖原代码。
 5.  点击右上角 **Deploy** 保存。
